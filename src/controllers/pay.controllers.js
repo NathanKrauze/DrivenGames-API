@@ -19,12 +19,11 @@ export async function postPay(req, res) {
     try {
 
         const session = await db.collection('sessions').findOne({token});
-       
+        console.log(session)
         if(!session) return res.status(401).send('Unauthorized');
 
-        const user = await db.collection("register").findOne({ _id: session.userId })
 
-        if (user) {
+        if (session) {
 
             delete user.password
             
