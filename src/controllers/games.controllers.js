@@ -20,7 +20,7 @@ export async function addGames(req, res){
         const session = await db.collection('sessions').findOne({token});
         if(!session) return res.status(401).send('Unauthorized');
 
-        await db.collection('games').insertOne(req.body);
+        await db.collection('games-selected').insertOne(req.body);
         res.sendStatus(201);
     } catch (err) {
         res.status(500).send(err.message);
